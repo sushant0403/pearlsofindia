@@ -1,0 +1,117 @@
+<section class="reviewForm">
+    <div class="container flex justify-content-center ">
+      <div  class="login_register">
+        <form action="{% url 'review_add_view' package.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+          <h2>Review package</h2>
+          <label for="FormControlInput1">Subject</label>
+          <br>
+          <input type="text" id="FormControlInput1" placeholder="subject" name="subject" required>
+          <br>
+          <div class="grid-2">
+            <div>
+                <label for="FormControlInput1" style="margin-left:2rem;">Driver</label><br>
+                <select name="driverSelect" id="driverSelect">
+                    {% for driver in drivers %}
+                    
+                        <option value="{{driver.id}}">{{driver.fullname}}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+            <div>
+                <label for="FormControlInput1" style="margin-left:4rem;">Rating</label><br>
+                <select name="DRating" id="DRating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                </select><br>
+            </div>
+          </div>
+          <br>
+          <div class="flex">
+            <div>
+                <label for="FormControlInput1">Facilities</label><br>
+                <select name="facilities" id="facilities">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                </select><br>
+            </div>
+
+            <div>
+                <label for="FormControlInput1">Comfort</label><br>
+                <select name="comfort" id="comfort">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                </select><br>
+            </div>
+
+            <div>
+                <label for="FormControlInput1">Experiences</label><br>
+                <select name="experiences" id="experiences">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                </select><br>
+            </div>
+            
+            <div>
+                <label for="FormControlInput1">Locations</label><br>
+                <select name="locations" id="locations">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                </select><br>
+            </div>
+                
+        </div>
+          <label for="FormControlInput1">review</label>
+          <br>
+          <textarea type="number" placeholder="message" name="review" required></textarea>
+          <br>
+          <input type="file" id="images" name="images" accept="image/png, image/jpeg" multiple>
+          <br>
+
+          <button class='btn-secondary btn' type="submit">submit</button>
+          <p>You need to have logged in and completed the package to review it.</p>
+    
+        </form>
+    </div>
+    </div>
+  </section>

@@ -1,0 +1,41 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<div class="orders">
+    <h3 style="text-align : center; margin:1rem;">Your Orders :</h3>
+
+    <table id="customers">
+      <tr>
+        <th>Order</th>
+        <th>Name</th>
+        <th>Package</th>
+        <th>People</th>
+        <th>Started</th>
+        <th>Completed</th>
+      </tr>
+      
+      {% for order in orders %}
+      <tr>
+        <td><a href="{% url 'orderDetail_view' order.id %}">{{order.id}}</a></td>
+        <td>{{order.fullname}}</td>
+        <td><a href="{% url 'packageDetail_view' order.package.id %}">{{order.package.id}}</a></td>
+        <td>{{order.persons}}</td>
+
+        {% if order.started %}
+        <td><i style="color: green;" class="fa fa-check"></i></td>
+        {% else %}
+        <td><i style="color: red;" class="fa fa-times"></i></td>
+        {% endif %}
+
+        {% if order.completed %}
+        <td><i style="color: green;" class="fa fa-check"></i></td>
+        {% else %}
+        <td><i style="color: red;" class="fa fa-times"></i></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      
+    </table>
+</div>
+
+{% endblock content %}

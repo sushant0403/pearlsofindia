@@ -1,0 +1,62 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="room top" id="room">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h2>Drivers</h2>
+        </div>
+      </div>
+      <div class="content grid">
+
+        {% for driver in drivers %}
+          <div class="box">
+          <div class="img">
+            <img src="{{driver.image.url}}" alt="{{driver.title}}">
+          </div>
+          <div class="text">
+            <h5>{{driver.fullname|capfirst}}</h5>
+            <p style="text-align: right;">Rating : {{driver.averagereview}}({{driver.countreview}})</p>
+
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+    <h3 class="head_middle">Car Charges</h3>
+    <div class="carcharges">
+        <table class="table table-striped" style="width:80%">
+          <thead>
+            <tr>
+              <th scope="col">IMAGE</th>
+              <th scope="col">CAR</th>
+              <th scope="col">NUMBER OF PERSONS</th>
+              <th scope="col">PRICE PER DAY</th>
+              <th scope="col">SURCHARGE ABOVE KM LIMIT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for car in carcharges %}
+            <tr>
+              <th scope="row"><img src="{{car.image.url}}"></th>
+              <td>{{car.carname|capfirst}}</td>
+              <td>{{car.persons}}</td>
+              <td>{{car.price}}</td>
+              <td>{{car.perKM}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% comment %} Book form {% endcomment %}
+    <div class="driverbook1">
+    {% include './includes/driverbook.html' %}
+    </div>
+</section>
+
+{% endblock content %}
+  

@@ -1,0 +1,44 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div>
+    <div class="profile-container">
+        <div class="profile">
+        {% if userprofile %}
+        {% if userprofile.image %}
+            <img src="{{userprofile.image.url}}" alt="">
+        {% else %}
+            <img src="/static/images/guest-user.jpg">
+        {% endif %}
+          <h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
+          <p>{{request.user.username}}</p>
+      
+          <h4>Gender :</h4>
+          <p>{{userprofile.gender}}</p>
+
+          <h4>Phone no :</h4>
+          <p>{{userprofile.phone}}</p>
+
+          <h4>Email :</h4>
+          <p>{{request.user.email}}</p>
+
+          <h4>Address :</h4>
+          <p>{{userprofile.address}}, {{userprofile.country}}</p>
+
+          <h4>Date Joined :</h4>
+          <p>{{request.user.date_joined.date}}</p>
+
+          <a href="{% url 'change_password_view' %}"><button class="btn">change password</button></a>
+            <a href="{% url 'edit_profile_view' %}"><button class="btn">edit profile</button></a>
+        {% else %}
+            <p>Profile not created yet</p>
+            <a href="{% url 'create_profile_view' %}"><button class="btn">create profile</button></a>
+        {% endif %}
+        </div>
+      </div>
+</div>
+
+
+{% endblock content %}

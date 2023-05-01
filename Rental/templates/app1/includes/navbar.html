@@ -1,0 +1,103 @@
+<header class="header" id="navigation-menu">
+  <div class="navcontainer">
+    <nav>
+      <a href="/" class="logo"> <img src="/static/images/Logo The Pearls of India.png" alt=""> </a>
+
+      <ul class="nav-menu">
+        <li> <a href="{%url 'packages_view'%}" class="nav-link">Packages</a> </li>
+        <li> <a href="{%url 'drivers_view'%}" class="nav-link">Drivers</a> </li>
+        <li> <a href="{%url 'gallery_view'%}" class="nav-link">Gallery</a> </li>
+        <li> <a href="{%url 'feedback_view'%}" class="nav-link">Feedbacks</a> </li>
+        <li> <a href="{%url 'about_view'%}" class="nav-link">About</a> </li>
+        <li> <a href="{%url 'contactUs_view'%}" class="nav-link">Contact</a> </li>
+        <li>
+          <div class="nav-search-account">
+            <div>
+              <form action="{% url 'search_view' %}" method="GET" style="display:flex;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary" style=" margin-top: 0;"><i class="fa fa-search"></i></button>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="keyword"
+                  style="border: 2px solid gray; margin-top: 0;" required>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div style="display:flex;">
+      <div class="dropdown" style="margin-left:0.2rem; margin-top:0;">
+        <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style=" margin-top: 0;">
+          {% if user_image %}
+          <img src="{{user_image.url}}">
+          {% else %}
+          <img src="/static/images/guest-user.jpg">
+          {% endif %}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {% if request.user.is_authenticated %}
+
+          <a class="dropdown-item" href="{% url 'order_view' %}">orders</a>
+          <a class="dropdown-item" href="{% url 'profile_view' %}">profile</a>
+          <a class="dropdown-item" href="{% url 'logout_view' %}">logout</a>
+
+          {% else %}
+
+          <a class="dropdown-item" href="{% url 'login_view' %}">login</a>
+          <a class="dropdown-item" href="{% url 'register_view' %}">register</a>
+
+          {% endif %}
+
+        </div>
+      </div>
+
+      {% comment %} <div class="navbar-btn d-none d-sm-inline-block">
+        {% if request.user.is_authenticated %}
+        <ul>
+          <li>
+            Welcome {{user.username}}
+          </li>
+          <li>
+            <a class="btn primary-btn" href="{% url 'logout_view' %}">log out</a>
+          </li>
+        </ul>
+        {% else %}
+        <ul>
+          <li>
+            <a class="btn primary-btn-outline" href="{% url 'login_view' %}">Sign In</a>
+          </li>
+          <li>
+            <a class="btn primary-btn" href="{% url 'register_view' %}">Sign Up</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div> {% endcomment %}
+
+      <div class="hambuger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+
+    </nav>
+  </div>
+</header>
+<script>
+  const hambuger = document.querySelector('.hambuger');
+  const navMenu = document.querySelector('.nav-menu');
+
+  hambuger.addEventListener("click", mobileMenu);
+
+  function mobileMenu() {
+    hambuger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  }
+
+  const navLink = document.querySelectorAll('.nav-link');
+  navLink.forEach((n) => n.addEventListener("click", closeMenu));
+
+  function closeMenu() {
+    hambuger.classList.remove("active");
+    navMenu.classList.remove("active");
+  }
+</script>

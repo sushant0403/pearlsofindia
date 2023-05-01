@@ -1,0 +1,63 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main">
+    <div>
+        {% for feedback in feedbacks %}
+        <div class="feedback-div">
+            <p><span style="font-size: 1.5rem;">
+                    {% if review.userImage %}
+                    <img class="reviewer-img" src="{{review.userImage.url}}">
+                    {% else %}
+                    <img class="reviewer-img" src="/static/images/guest-user.jpg">
+                    {% endif %}
+
+                    {% if feedback.user.first_name and feedback.user.last_name %}
+                    {{feedback.user.first_name|capfirst}} {{feedback.user.last_name|capfirst}}
+                </span>
+                <br>
+                {{feedback.updated_date}}
+            </p>
+            {% else %}
+
+            {{feedback.user.username}}
+            </span>
+            <br>
+            {{feedback.updated_date}}
+            </p>
+            {% endif %}
+            <h4>{{feedback.title|capfirst}}</h4>
+            <p> {{feedback.review|capfirst}}</p>
+
+        </div>
+        {% endfor %}
+        {% if feedbacks.has_other_pages %}
+        <nav class="mt-4" aria-label="Page navigation sample">
+            <ul class="pagination">
+                {% if feedbacks.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{feedbacks.previous_page_number}}">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                {% endif %}
+                {% for i in feedbacks.paginator.page_range %}
+                {% if feedbacks.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if feedbacks.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{feedbacks.next_page_number}}">Next</a></li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+
+
+    {% endblock content %}

@@ -1,0 +1,64 @@
+<section class="book">
+    <div class="container flex justify-content-center ">
+      <div  class="login_register">
+        <form action="{% url 'book_driver_view' %}" method="POST">
+            {% csrf_token %}
+          <h2>Driver Booking</h2>
+          <label for="FormControlInput1">Full Name :</label>
+          <br>
+          <input type="text" id="FormControlInput1" placeholder="Full name" name="fullname" required>
+          <br>
+          
+          <label for="FormControlInput1">Email :</label>
+          <br>
+          <input type="email" id="FormControlInput1" placeholder="name@hello.com" name="email" required>
+          <br>
+
+          <label for="FormControlInput1">Persons :</label>
+          <br>
+          <input type="number" id="FormControlInput1" placeholder="2" name="persons" required>
+          <br>
+
+          <label for="FormControlInput1">Departure Date :</label>
+          <br>
+          <input type="date" id="FormControlInput1" placeholder="" name="departure_date" required>
+          <br>
+
+          <label for="FormControlInput1">Duration (days) :</label>
+          <br>
+          <input type="number" id="FormControlInput1" placeholder="in days" name="duration" required>
+          <br>
+
+          <button class='btn-secondary btn' type="submit">submit</button>
+    
+        </form>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- <section class="book">
+    <div class="container flex">
+      <div class="input grid">
+        <div class="box">
+          <label>Check-in:</label>
+          <input type="date" placeholder="Check-in-Date">
+        </div>
+        <div class="box">
+          <label>Check-out:</label>
+          <input type="date" placeholder="Check-out-Date">
+        </div>
+        <div class="box">
+          <label>Adults:</label> <br>
+          <input type="number" placeholder="0">
+        </div>
+        <div class="box">
+          <label>Children:</label> <br>
+          <input type="number" placeholder="0">
+        </div>
+      </div>
+      <div class="search">
+        <input type="submit" value="SEARCH">
+      </div>
+    </div>
+  </section> -->

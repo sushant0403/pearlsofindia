@@ -1,0 +1,212 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main">
+    <div class='productbanner'>
+        <img src="{{package.image.url}}" />
+        <h2>{{package.title|capfirst}}</h2>
+        <p>{{package.speciality|capfirst}}</p>
+        <p>{{package.description|capfirst}}</p>
+    </div>
+    <br>
+    <h2 class="head_middle"> Full detail of events :</h2>
+    <br>
+    {% for event in events %}
+    <div class="cards" style="width:full; margin:10px 20px; padding: 5px; box-shadow: 0px 0px 15px rgba(0,0,0,0.3);">
+        <img src="{{event.image.url}}" class="gallery-item" alt="Gallery1" name="{{event.title}} {{event.image.name}}">
+        <div class="card-item">
+            <h2>{{event.title|capfirst}}</h2>
+            <p>{{event.description|capfirst}}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- book now button  -->
+    <div class="button fixed-btn-book" id="fixed-btn-book">
+        <a href="{%url 'book_package_view' package.id %}"> <button class="btn1">Book Now</button></a>
+    </div>
+    <!-- #### -->
+
+    <br>
+    <h2 class="head_middle">Package Gallery</h2>
+
+    <section class="gallery">
+        <div class="container-lg">
+            <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+                {% for photo in photos %}
+                <div class="col">
+                    <img src="{{photo.image.url}}" class="gallery-item" alt="Gallery1" name="{{photo.title}}">
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+
+    {% include './includes/reviewForm.html' %}
+
+
+    <h2 class="head_middle">Reviews</h2>
+
+    {% for review in reviews %}
+
+    <div class="review-div"
+        style="width:full; margin:10px 20px; padding: 5px; box-shadow: 0px 0px 15px rgba(0,0,0,0.3)">
+        <p style="width:95%; margin-top: 1rem;"><span style="font-size: 1.5rem;">
+        {% if review.userImage %}
+          <img class="reviewer-img" src="{{review.userImage.url}}">
+          {% else %}
+          <img class="reviewer-img" src="/static/images/guest-user.jpg">
+          {% endif %}
+
+        {% if review.user.first_name and review.user.last_name %}
+
+        {{review.user.first_name|capfirst}} {{review.user.last_name|capfirst}}
+            </span>
+            <br>
+            Reviewed at {{review.updated_date}}
+        </p>
+        {% else %}
+
+        {{review.user.username}}
+            </span>
+            <br>
+            {{review.updated_date}}
+        </p>
+        {% endif %}
+
+        <div class="review-grid">
+            <div class='reviews-rating'>
+                <h3>Rating </h3>
+
+                <div>
+                    <!-- <div class='review1'> -->
+                        <p>Driver : {{review.driverSelect}}</p>
+                    <!-- </div> -->
+                </div>
+
+                <div>
+                    <div class='review1'>
+                        <span style="width:{{review.driver}}0%"></span>
+                        <p>Driver-rating : {{review.driver|capfirst}}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class='review1'>
+                        <span style="width:{{review.facilities}}0%"></span>
+                        <p>Facilities : {{review.facilities}}</p>
+                    </div>
+                </div>
+                <div>
+                    <div class='review2'>
+                        <span style="width:{{review.comfort}}0%"></span>
+                        <p>Comfort : {{review.comfort}}</p>
+                    </div>
+                </div>
+                <div>
+                    <div class='review3'>
+                        <span style="width:{{review.experience}}0%"></span>
+                        <p>Experience : {{review.experience}}</p>
+                    </div>
+                </div>
+                <div>
+                    <div class='review4'>
+                        <span style="width:{{review.location}}0%"></span>
+                        <p>Locations : {{review.location}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="review-text">
+                <h3>{{review.title|capfirst}}</h3>
+                <p>{{review.review|capfirst}}</p>
+            </div>
+        </div>
+
+        <section class="gallery">
+            <div class="container-lg">
+                <div class="row gy-4 row-cols-sm-2 row-cols-md-4">
+                    {% for photo in review.images %}
+                    <div class="col">
+                        <img src="{{photo.image.url}}" class="gallery-item" alt="Gallery1" name="{{photo.title}}">
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endfor %}
+</div>
+<nav class="mt-4" aria-label="Page navigation sample">
+    <ul class="pagination">
+    {% if reviews.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{reviews.previous_page_number}}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+    {% endif %}
+    {% for i in reviews.paginator.page_range %}
+    {% if reviews.number == i %}
+      <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+    {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if reviews.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{reviews.next_page_number}}">Next</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+    {% endif %}
+    </ul>
+  </nav>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="gallery-popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <img src="" class="modal-img" alt="Modal Image" name="">
+                <p class="modal-title"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("gallery-item")) {
+            const src = e.target.getAttribute("src");
+            const name = e.target.getAttribute("name");
+            document.querySelector(".modal-img").src = src;
+            document.querySelector(".modal-title").innerHTML = name;
+            const myModal = new bootstrap.Modal(document.getElementById('gallery-popup'));
+            myModal.show();
+        }
+    })
+
+    document.addEventListener("scroll", function (e) {
+        const btn = document.getElementById("fixed-btn-book");
+        btn.style.top = "0rem";
+        media = window.matchMedia("(max-width: 700px)");
+        if (window.scrollY === 0 ){
+            btn.style.top = "4rem";
+        }
+        if (media.matches && window.scrollY === 0 ){
+            btn.style.top = "2rem";
+        }
+        console.log(window.matchMedia("(max-width: 700px)").matches);
+    })
+</script>
+
+<h2 class="head_middle">Locations on map</h2>
+<section class="map">
+    <iframe src="{{package.map_link}}" width="600" height="450" style="border:0;" allowfullscreen=""
+        loading="lazy"></iframe>
+</section>
+
+{% endblock content %}

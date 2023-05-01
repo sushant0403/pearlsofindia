@@ -1,0 +1,55 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<div class="order-detail" >
+    <h3 style="text-align : center; margin:1rem;">Orders detail :</h3>
+    <div class="table">
+        <table id="customers">
+            <tr>
+                <td>Order ID</td>
+                <td>{{order.id}}</td>
+            </tr>
+            
+            <tr>
+                <td>Package ID</td>
+                <td><a href="{% url 'packageDetail_view' order.package.id %}">{{order.package.id}}</a></td>
+            </tr>
+            
+            <tr>
+                <td>Full Name</td>
+                <td>{{order.fullname}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{order.email}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{order.address}}</td>
+            </tr>
+            <tr>
+                <td>Departure Date</td>
+                <td>{{order.Departure_date}}</td>
+            </tr>
+            <tr>
+                <td>Persons</td>
+                <td>{{order.persons}}</td>
+            </tr>
+            <tr>
+                <td>Total Price</td>
+                <td>$ {{order.total}}</td>
+            </tr>
+            <tr>
+                <td>Started</td>
+                <td>{{order.started}}</td>
+            </tr>
+            <tr>
+                <td>Completed</td>
+                <td>{{order.completed}}</td>
+            </tr>
+            
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

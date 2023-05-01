@@ -1,0 +1,36 @@
+<section class="restaurant top" id="restaurant">
+    <div class="container flex">
+      <div class="left">
+        <img src="static/images/topcars.jpg" alt="">
+      </div>
+      <div class="right">
+        <div class="text">
+          <h2>Our Drivers</h2>
+          <p>Our Best Drivers, you can book them right now.</p>
+          <a href="{%url 'drivers_view'%}"> <button class="btn1">VIEW MORE</button></a>
+
+        </div>
+        <div class="accordionWrapper">
+          <!-- <div class="accordionItem open">
+            <h2 class="accordionIHeading">Ramesh ( kallu ) </h2>
+            <div class="accordionItemContent">
+                <img src="static/images/a1.jpg" />
+              <p>Very active and safe driver perfect for holiday trips.
+              </p>
+            </div>
+          </div> -->
+          {% for driver in drivers %}
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">{{driver.fullname}}</h2>
+            <div class="accordionItemContent">
+              <img src="{{driver.image.url}}" />
+              <p>{{driver.description}}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </section>

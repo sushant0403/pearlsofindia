@@ -1,0 +1,74 @@
+<section class="gallary mtop " id="gallary">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h5>WELCOME TO OUR PHOTO GALLERY</h5>
+          <h2>Photo Gallery of our Travels</h2>
+        </div>
+        <div class="button">
+          <a href="{%url 'gallery_view'%}"> <button class="btn1">VIEW GALLERY</button></a>
+        </div>
+      </div>
+      <div class="owl-carousel owl-theme">
+        {% for image in images %}
+        <div class="item">
+          <img src="{{image.image.url}}" alt="{{image.title}}">
+        </div>
+        {% endfor %}
+        
+      </div>
+      {% comment %} <div class="owl-carousel owl-theme">
+        <div class="item">
+          <img src="static/images/g1.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g2.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g3.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g4.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g5.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g6.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g7.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="static/images/g8.jpg" alt="">
+        </div>
+      </div> {% endcomment %}
+
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js" integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      dots: false,
+      navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1000: {
+          items: 4
+        }
+      }
+    })
+  </script>

@@ -1,0 +1,26 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<div  class="login_register">
+    <form action="{% url 'login_view' %}" method="POST">
+        {% csrf_token %}
+      <h2>Login Form</h2>
+      <label for="FormControlInput1">Username/Email :</label>
+      <br>
+      <input type="text" id="FormControlInput1" placeholder="name@hello.com" name="name" required>
+      <br>
+
+      <label for="FormControlInput1">Password :</label>
+      <br>
+      <input type="password" id="FormControlInput1" placeholder="password" name="password" required>
+      <br>
+      <button class='btn-secondary btn' type="submit">login</button>
+      <p>don't have an account? <a href="{% url 'register_view' %}">register here !</a></p>
+      <p><a href="{% url 'forgotpassword_view' %}">forgot password ?</a></p>
+
+    </form>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,92 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="home" id="home">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/images/a1.jpg" class="d-block w-100" alt="..." >
+        <!-- <div class="carousel-caption d-none d-md-block">
+          <h2 class="middle">Find Your new Adventure</h2>
+          <p class="middle">we are here to provide you with the Best Adventure Holiday</p>
+          <button class="btn1 btn-mid"  >Explore</button>
+        </div> -->
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/a2.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/ami.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> -->
+  </div>
+</section>
+{% comment %}
+<script>
+  function img(anything) {
+    document.querySelector('.slide').src = anything;
+  }
+
+  function change(change) {
+    const line = document.querySelector('.image');
+    line.style.background = change;
+  }
+</script> {% endcomment %}
+
+{% comment %} Book form {% endcomment %}
+<div class="driverbook">
+  {% include './includes/driverbook.html' %}
+</div>
+
+{% comment %} about {% endcomment %}
+{% include './includes/Homeabout.html' %}
+
+{% comment %} facilites {% endcomment %}
+{% include './includes/facilities.html' %}
+
+{% comment %} packages {% endcomment %}
+{% include './includes/packagesHome.html' %}
+
+{% comment %} review {% endcomment %}
+{% include './includes/topreview.html' %}
+
+{% comment %} drivers {% endcomment %}
+{% include './includes/drivers.html' %}
+
+{% comment %} gallery {% endcomment %}
+{% include './includes/gallery.html' with images=gallery_images %}
+
+
+
+
+
+<script>
+  var accItem = document.getElementsByClassName('accordionItem');
+  var accHD = document.getElementsByClassName('accordionIHeading');
+
+  for (i = 0; i < accHD.length; i++) {
+    accHD[i].addEventListener('click', toggleItem, false);
+  }
+
+  function toggleItem() {
+    var itemClass = this.parentNode.className;
+    for (var i = 0; i < accItem.length; i++) {
+      accItem[i].className = 'accordionItem close';
+    }
+    if (itemClass == 'accordionItem close') {
+      this.parentNode.className = 'accordionItem open';
+    }
+  }
+</script>
+
+
+{% endblock content %}

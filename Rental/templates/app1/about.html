@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="about">
+    <img  class="about-img" src="/static/images/Delhi_to_Goa_final_aB91SLW.png" alt="">
+    <div class="about-grid">
+        <div class="about-grid-item">
+            <h3>Who are we?</h3>
+            <p>We are tourists who like to travel around in a safe and carefree way. In India we met two drivers who gave us an unforgettable journey.</p>
+        </div>
+        <div class="about-grid-item">
+            <h3>What is possible?</h3>
+            <p>We mediate for day and multi-day trips for the drivers. Personal wishes, comfort and a special journey are always central.</p>
+        </div>
+        <div class="about-grid-item">
+            <h3>what can you expect?</h3>
+            <p>Babu and his fellow drivers are English speaking. The excellent knowledge of the country and the environment ensures that you can enjoy India to the fullest.</p>
+        </div>
+    </div>
+    <div class="about-column">
+        <div class="about-column-item">
+            <h3>Discover Indian and Nepali Culture</h3>
+            <p>India and Nepal are countries full of attractions. A colorful Indian population, beautiful nature, special culture and a wonderful climate. Smell, feel, see, taste and hear, your senses are optimally stimulated and put to the test in India.
+
+                The Pearls of India mediates in private travel with driver through (North) India. A private driver offers unprecedented possibilities; you will become acquainted with the countless sights, special culture, animals and people of India and Nepal, but above all you can travel in a comfortable way and enjoy yourself to the fullest. We bring tourists in contact with the drivers for this unforgettable journey. .</p>
+        </div>
+        <div class="about-column-item">
+            <a href="{%url 'drivers_view'%}">
+                <h3>Book Your Private Driver</h3>
+            </a>
+            <p>Tour Through India and Nepal</p>
+
+            <a href="{%url 'packages_view'%}">
+                <h3>Climate, Population, Packages</h3>
+            </a>
+            <p>Places of interest in India and Nepal</p>
+
+            <a href="{%url 'gallery_view'%}">
+                <h3>Travelogs and Photos</h3>
+            </a>
+            <p>See our travel Gallery</p>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

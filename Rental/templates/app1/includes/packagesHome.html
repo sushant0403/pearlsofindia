@@ -1,0 +1,34 @@
+<section class="room top" id="room">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h5>RAISING TRAVEL AND ADVENTURE TO THE HIGHEST LEVEL</h5>
+          <h2>Travel Packages</h2>
+        </div>
+        <div class="button">
+         <a href="{%url 'packages_view'%}"> <button class="btn1">VIEW ALL</button></a>
+        </div>
+      </div>
+  
+      <div class="content grid">
+
+        {% for package in top_packages %}
+        <a href="{% url 'packageDetail_view' package.id %}">
+          <div class="box">
+            <div class="img">
+              <img src="{{package.image.url}}" alt="{{package.title}}">
+            </div>
+            <div class="text">
+              <h3>{{package.title|capfirst}}</h3>
+              <p> <span>$</span>{{package.price}} <span>/per person
+                <br>{{package.country}}</span> </p>
+                <p style="text-align: right;">Rating : {{package.averagereview}}({{package.countreview}})</p>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div>
+    </div>
+</section>
+  
